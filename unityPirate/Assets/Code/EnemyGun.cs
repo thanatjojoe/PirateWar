@@ -7,7 +7,7 @@ public class EnemyGun : MonoBehaviour
     [SerializeField] public Transform bullet;
     [SerializeField] public Transform spawnPoint;
     
-    [SerializeField] public float fireInterval = 5f; // The time interval between each fire
+    [SerializeField] private float fireInterval = 6f; // The time interval between each fire
     
     [SerializeField] public float detectionRadius = 5f; // The radius that the enemy can detect the player
     [SerializeField] public LayerMask playerLayer; // The layer that the player is on
@@ -74,7 +74,7 @@ public class EnemyGun : MonoBehaviour
                 if (TurnBase.EnemyShoot == true)
                 {
                     move = true;
-                    CountTime();
+                    StartCoroutine(StartTimer());
                 }
                 if (move == true && canShoot == true)
                 {
@@ -93,16 +93,12 @@ public class EnemyGun : MonoBehaviour
         Transform pr = Instantiate(bullet, firePoint.position, Quaternion.identity);
         pr.GetComponent<Rigidbody2D>().velocity = fireVelocity;
     }
-    IEnumerator StartTimer(int timeRemaining = 3)
+    IEnumerator StartTimer(int timeRemaining = 2)
     {
         for (int i = timeRemaining; i > 0; i--)
         {
             yield return new WaitForSeconds(1f);
         }
         canShoot = true;
-    }
-    void CountTime()
-    {
-        StartCoroutine(StartTimer());
     }
 }

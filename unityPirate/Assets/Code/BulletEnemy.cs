@@ -5,6 +5,8 @@ using UnityEngine;
 public class BulletEnemy : MonoBehaviour
 {
     private Rigidbody2D rb;
+
+    public static bool playerMoveToOrigin = false;
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -29,6 +31,8 @@ public class BulletEnemy : MonoBehaviour
         {
             yield return new WaitForSeconds(1f);
         }
+
+        playerMoveToOrigin = true;
         TurnBase.EnemyShoot = false;
         TurnBase.PlayerShoot = true;
         TurnBase.turnPlayer = true;
