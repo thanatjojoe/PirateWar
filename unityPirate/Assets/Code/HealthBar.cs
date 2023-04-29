@@ -8,11 +8,14 @@ public class HealthBar : MonoBehaviour
     public Gradient gradient;
     public Image fill;
 
+    public GameObject PlayerHP;
 
-
-    void update()
+    void Update()
     {
-        
+        if (Player.currentHealth <= 0)
+        {
+            Destroy(PlayerHP.gameObject);
+        }
     }
     public void SetMaxHealth(int health)
     {

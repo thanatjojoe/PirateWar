@@ -7,19 +7,24 @@ public class Player : MonoBehaviour
     public HealthBar healthBar;
     private bool isMovingBack;
     public Vector3 originalPosition;
-    PlayerConstrutor player = new PlayerConstrutor(100,10,10);
-    
-    
+
+    private int hp = 100;
+    public static int currentHealth;
+
+   
     
     void Start()
     {
-       
-        player.currentHealth = player.Hp;
+        currentHealth = hp;
         isMovingBack = false;
     }
     
     void Update()
     {
+        if (currentHealth <= 0)
+        {
+            Destroy(gameObject);
+        }
         if (isMovingBack == true)
         {
             // Move the enemy back to their original position
@@ -43,20 +48,17 @@ public class Player : MonoBehaviour
         
         if (other.gameObject.tag == "Bullet")
         {
-            player.RecieveDmg(10);
-            healthBar.SetHealth(player.currentHealth);
+            RecieveDmg(10);
+            healthBar.SetHealth(currentHealth);
         }
         if (other.gameObject.tag == "Water")
         {
-            StartCoroutine(StartTimer(2));
+            currentHealth = 0;
+            Destroy(gameObject);
         }
-    } 
-    IEnumerator StartTimer(int timeRemaining)
-    {
-        for (int i = timeRemaining; i > 0; i--)
-        {
-            yield return new WaitForSeconds(1);
-        }
-        Destroy(gameObject);
+    }
+    public void RecieveDmg(int atkEnemy)
+    { 
+        currentHealth -= atkEnemy;
     }
 }

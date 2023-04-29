@@ -20,9 +20,15 @@ public class Bullets : MonoBehaviour
    {
       if (other.gameObject.tag == "Water" || other.gameObject.tag == "Enemy" || other.gameObject.tag == "Boat")
       {
-         GetComponent<Collider2D>().enabled = false;
          StartCoroutine(StartTimer(1));
+         EnemyGun.one1 = true;
       }
+
+      if (other.gameObject.tag == "Enemy")
+      {
+         GetComponent<Collider2D>().enabled = false;
+      }
+      
    }
    IEnumerator StartTimer(int timeRemaining)
    {
