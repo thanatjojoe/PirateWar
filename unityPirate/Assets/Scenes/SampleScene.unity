@@ -503,7 +503,7 @@ GameObject:
   - component: {fileID: 166898036}
   - component: {fileID: 166898034}
   - component: {fileID: 166898033}
-  - component: {fileID: 166898032}
+  - component: {fileID: 166898037}
   m_Layer: 6
   m_Name: Enemy (1)
   m_TagString: Enemy
@@ -527,54 +527,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
---- !u!60 &166898032
-PolygonCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 166898030}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.74, y: 1.15}
-    newSize: {x: 0.74, y: 1.15}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 0.089999996, y: -0.175}
-      - {x: 0.12, y: -0.065}
-      - {x: 0.22999999, y: -0.015}
-      - {x: 0.24, y: 0.044999998}
-      - {x: 0.26, y: 0.255}
-      - {x: 0.32999998, y: 0.235}
-      - {x: 0.37, y: 0.305}
-      - {x: 0.37, y: 0.515}
-      - {x: 0.21, y: 0.575}
-      - {x: -0.11, y: 0.575}
-      - {x: -0.21, y: 0.515}
-      - {x: -0.37, y: 0.385}
-      - {x: -0.37, y: 0.105}
-      - {x: -0.34, y: 0.095}
-      - {x: -0.29999998, y: 0.095}
-      - {x: -0.29999998, y: -0.114999995}
-      - {x: -0.28, y: -0.315}
-      - {x: -0.22999999, y: -0.385}
-      - {x: -0.31, y: -0.515}
-      - {x: -0.29, y: -0.575}
-      - {x: 0.14999999, y: -0.575}
-      - {x: 0.06, y: -0.39499998}
-      - {x: 0.14999999, y: -0.285}
 --- !u!114 &166898033
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -694,6 +646,54 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!60 &166898037
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 166898030}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.74, y: 1.15}
+    newSize: {x: 0.74, y: 1.15}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.089999996, y: -0.175}
+      - {x: 0.12, y: -0.065}
+      - {x: 0.22999999, y: -0.015}
+      - {x: 0.24, y: 0.044999998}
+      - {x: 0.26, y: 0.255}
+      - {x: 0.32999998, y: 0.235}
+      - {x: 0.37, y: 0.305}
+      - {x: 0.37, y: 0.515}
+      - {x: 0.21, y: 0.575}
+      - {x: -0.11, y: 0.575}
+      - {x: -0.21, y: 0.515}
+      - {x: -0.37, y: 0.385}
+      - {x: -0.37, y: 0.105}
+      - {x: -0.34, y: 0.095}
+      - {x: -0.29999998, y: 0.095}
+      - {x: -0.29999998, y: -0.114999995}
+      - {x: -0.28, y: -0.315}
+      - {x: -0.22999999, y: -0.385}
+      - {x: -0.31, y: -0.515}
+      - {x: -0.29, y: -0.575}
+      - {x: 0.14999999, y: -0.575}
+      - {x: 0.06, y: -0.39499998}
+      - {x: 0.14999999, y: -0.285}
 --- !u!1 &320882993
 GameObject:
   m_ObjectHideFlags: 0

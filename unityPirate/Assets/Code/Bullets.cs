@@ -30,14 +30,13 @@ public class Bullets : MonoBehaviour
       }
       
    }
-   IEnumerator StartTimer(int timeRemaining)
+   IEnumerator StartTimer(float timeRemaining)
    {
-      for (int i = timeRemaining; i > 0; i--)
+      for (float i = timeRemaining; i > 0; i--)
       {
-         yield return new WaitForSeconds(1);
+         yield return new WaitForSeconds(0.5f);
       }
       TurnBase.EnemyShoot = true; 
-      Destroy(gameObject);
-     
+      Destroy(gameObject); 
    }
 }
