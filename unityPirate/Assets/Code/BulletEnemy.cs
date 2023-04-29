@@ -21,8 +21,11 @@ public class BulletEnemy : MonoBehaviour
     {
         if (other.gameObject.tag == "Water" || other.gameObject.tag == "Player" || other.gameObject.tag == "Boat")
         {
-            GetComponent<Collider2D>().enabled = false;
             StartCoroutine(StartTimer(1));
+        }
+        if (other.gameObject.tag == "Player")
+        {
+            GetComponent<Collider2D>().enabled = false;
         }
     }
     IEnumerator StartTimer(int timeRemaining)
@@ -31,7 +34,6 @@ public class BulletEnemy : MonoBehaviour
         {
             yield return new WaitForSeconds(1f);
         }
-
         playerMoveToOrigin = true;
         TurnBase.EnemyShoot = false;
         TurnBase.PlayerShoot = true;

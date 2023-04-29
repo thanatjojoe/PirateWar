@@ -1,24 +1,37 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
-    public HealthBar healthBar;
+  
     public Vector3 originalPosition;
     private bool isMovingBack;
-
-    PlayerConstrutor enemy = new PlayerConstrutor(100, 10, 10);
+    
+    
+    public int hp = 100; 
+    public static int currentHealth;
+    
+    public Slider slider;
+    public Gradient gradient;
+    public Image fill;
+    public GameObject hpBar;
 
     void Start()
     {
-        enemy.currentHealth = enemy.Hp;
+        currentHealth = hp;
         originalPosition = transform.position;
         isMovingBack = false;
     }
 
     void Update()
     {
+        if (currentHealth <= 0)
+        {
+            Destroy(hpBar.gameObject);
+            Destroy(gameObject);
+        }
         if (isMovingBack == true)
         {
             // Move the enemy back to their original position
@@ -29,20 +42,21 @@ public class Enemy : MonoBehaviour
             if (transform.position == originalPosition)
             {
                 isMovingBack = false;
+                EnemyGun.move = false;
             }
         }
         if (EnemyGun.move == true)
         {
-            isMovingBack = true;
-            EnemyGun.move = false;
+
+            StartCoroutine(Delay(1f));
         }
     }
     public void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag == "Bullet")
-        {
-            enemy.RecieveDmg(10);
-            healthBar.SetHealth(enemy.currentHealth);
+        { 
+            RecieveDmg(10);
+           SetHealth(currentHealth);
 
             // Push the enemy back
             Vector2 bulletVelocity = other.gameObject.GetComponent<Rigidbody2D>().velocity;
@@ -51,7 +65,25 @@ public class Enemy : MonoBehaviour
         }
         if (other.gameObject.tag == "Water")
         {
+            Destroy(hpBar.gameObject);
             Destroy(gameObject);
         }
+    }
+    public void RecieveDmg(int atkEnemy)
+    { 
+        currentHealth -= atkEnemy;
+    }
+    public void SetHealth(int health)
+    {
+        slider.value = health;
+        fill.color = gradient.Evaluate(slider.normalizedValue);
+    }
+    IEnumerator Delay(float timeRemaining)
+    {
+        for (float i = timeRemaining; i > 0; i--)
+        {
+            yield return new WaitForSeconds(0.5f);
+        }
+        isMovingBack = true;
     }
 }

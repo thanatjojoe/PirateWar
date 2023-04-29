@@ -7,7 +7,7 @@ public class EnemyGun : MonoBehaviour
     [SerializeField] public Transform bullet;
     [SerializeField] public Transform spawnPoint;
     
-    [SerializeField] private float fireInterval = 6f; // The time interval between each fire
+    [SerializeField] private float fireInterval = 7f; // The time interval between each fire
     
     [SerializeField] public float detectionRadius = 5f; // The radius that the enemy can detect the player
     [SerializeField] public LayerMask playerLayer; // The layer that the player is on
@@ -20,7 +20,8 @@ public class EnemyGun : MonoBehaviour
     
     public static bool move = false;
     public  bool canShoot = false;
-
+    public static bool one1 = true;
+    
     private void Update()
     { 
         // Update the time elapsed since the last bullet was fired
@@ -40,13 +41,13 @@ public class EnemyGun : MonoBehaviour
             }
         }
 
-        if (player != null && isPlayerDetected && timeSinceLastFire >= fireInterval)
+        if (player != null && one1 == true)
         {
             // Calculate the direction towards the player
             Vector2 direction = player.position - transform.position;
 
             // Add some randomness to the direction
-            float angleOffset = Random.Range(-20f, 0f);
+            float angleOffset = Random.Range(-15f, 0f);
             Quaternion rotation = Quaternion.AngleAxis(angleOffset, Vector3.forward);
             direction = rotation * direction;
 
@@ -60,17 +61,13 @@ public class EnemyGun : MonoBehaviour
             } 
             
             // Calculate the fire velocity
-            float r = Random.Range(10, 30);
+            float r = Random.Range(18, 30);
             Vector2 fireVelocity = direction.normalized * r;
 
             // Check if the player is within firing range
-            float distanceToPlayer = Vector2.Distance(transform.position, player.position);
+            float distanceToPlayer = Vector2.Distance(transform.position, player.position); 
             
-            if (distanceToPlayer < detectionRadius)
-            {
-               
-              
-                // Fire the projectile
+            // Fire the projectile
                 if (TurnBase.EnemyShoot == true)
                 {
                     move = true;
@@ -79,13 +76,10 @@ public class EnemyGun : MonoBehaviour
                 if (move == true && canShoot == true)
                 {
                     FireProjectile(spawnPoint, fireVelocity);
-                }
-                
-            } 
-            // Reset the time elapsed since the last bullet was fired
-            timeSinceLastFire = -1f;
-            canShoot = false;
+                    one1 = false;
+                } 
         }
+        canShoot = false;
     }
 
     public void FireProjectile(Transform firePoint, Vector2 fireVelocity)
@@ -93,7 +87,7 @@ public class EnemyGun : MonoBehaviour
         Transform pr = Instantiate(bullet, firePoint.position, Quaternion.identity);
         pr.GetComponent<Rigidbody2D>().velocity = fireVelocity;
     }
-    IEnumerator StartTimer(int timeRemaining = 2)
+    IEnumerator StartTimer(int timeRemaining = 3)
     {
         for (int i = timeRemaining; i > 0; i--)
         {

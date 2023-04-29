@@ -20,18 +20,23 @@ public class Bullets : MonoBehaviour
    {
       if (other.gameObject.tag == "Water" || other.gameObject.tag == "Enemy" || other.gameObject.tag == "Boat")
       {
-         GetComponent<Collider2D>().enabled = false;
          StartCoroutine(StartTimer(1));
+         EnemyGun.one1 = true;
       }
-   }
-   IEnumerator StartTimer(int timeRemaining)
-   {
-      for (int i = timeRemaining; i > 0; i--)
+
+      if (other.gameObject.tag == "Enemy")
       {
-         yield return new WaitForSeconds(1);
+         GetComponent<Collider2D>().enabled = false;
+      }
+      
+   }
+   IEnumerator StartTimer(float timeRemaining)
+   {
+      for (float i = timeRemaining; i > 0; i--)
+      {
+         yield return new WaitForSeconds(0.5f);
       }
       TurnBase.EnemyShoot = true; 
-      Destroy(gameObject);
-     
+      Destroy(gameObject); 
    }
 }
