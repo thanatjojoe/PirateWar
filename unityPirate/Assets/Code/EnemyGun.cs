@@ -22,7 +22,7 @@ public class EnemyGun : MonoBehaviour
     public  bool canShoot = false;
     public static bool one1 = true;
     
-    private void Update()
+    private void FixedUpdate()
     { 
         // Update the time elapsed since the last bullet was fired
         timeSinceLastFire += Time.fixedDeltaTime;
@@ -47,7 +47,7 @@ public class EnemyGun : MonoBehaviour
             Vector2 direction = player.position - transform.position;
 
             // Add some randomness to the direction
-            float angleOffset = Random.Range(-15f, 0f);
+            float angleOffset = Random.Range(-15f, 10f);
             Quaternion rotation = Quaternion.AngleAxis(angleOffset, Vector3.forward);
             direction = rotation * direction;
 
@@ -61,7 +61,7 @@ public class EnemyGun : MonoBehaviour
             } 
             
             // Calculate the fire velocity
-            float r = Random.Range(18, 30);
+            float r = Random.Range(30, 50);
             Vector2 fireVelocity = direction.normalized * r;
 
             // Check if the player is within firing range

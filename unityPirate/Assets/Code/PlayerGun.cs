@@ -5,12 +5,16 @@ using UnityEngine;
 public class PlayerGun : MonoBehaviour
 {
     [SerializeField] public Transform bullet;
+    [SerializeField] public Transform rocket;
     [SerializeField] public Transform spawnPoint;
+    [SerializeField] public Transform spawnPoint2;
     [SerializeField] public LineRenderer line;
 
     [SerializeField] public float launchForce = 1.5f;
     [SerializeField] public float trajectoryTimeStep = 0.05f;
     [SerializeField] public int trajectoryStepCount = 15;
+    
+    
     
     public Vector2 velocity, startMousePos, currentMousePos;
 
@@ -19,7 +23,7 @@ public class PlayerGun : MonoBehaviour
     {
         TurnBase.PlayerShoot = true;
     }
-    void Update()
+    void FixedUpdate()
     {
         if (Input.GetMouseButtonDown(0))
         {
@@ -27,9 +31,16 @@ public class PlayerGun : MonoBehaviour
         }
         if (Input.GetMouseButtonUp(0))
         {
-            if (TurnBase.turnPlayer == true &&  TurnBase.PlayerShoot == true)
+            if (TurnBase.turnPlayer == true && TurnBase.PlayerShoot == true && TurnBase.rocket <= 0) 
             {
                 FireProjectile(spawnPoint, velocity);
+            }
+
+            else if (TurnBase.turnPlayer == true &&  TurnBase.PlayerShoot == true && TurnBase.rocket > 0)
+            {
+               
+                FireProjectileRocket(spawnPoint2,velocity);
+                TurnBase.rocket--;
             }
         }
 
@@ -87,6 +98,25 @@ public class PlayerGun : MonoBehaviour
         Vector2 finalVelocity = fireVelocity.normalized * velocityMagnitude;
 
         Transform pr = Instantiate(bullet, firePoint.position, Quaternion.identity);
+        pr.GetComponent<Rigidbody2D>().velocity = finalVelocity;
+
+        TurnBase.turnPlayer = false;
+        TurnBase.PlayerShoot = false;
+    }
+    void FireProjectileRocket(Transform firePoint, Vector2 fireVelocity)
+    {
+        float maxDistance = 4f;
+        float minVelocity = 5f;
+        float maxVelocity = 50f;
+
+        Vector3 lastPoint = line.GetPosition(line.positionCount - 1);
+        float distance = Vector3.Distance(firePoint.position, lastPoint);
+        float t = Mathf.Clamp01(distance / maxDistance);
+        float velocityMagnitude = Mathf.Lerp(minVelocity, maxVelocity, t);
+
+        Vector2 finalVelocity = fireVelocity.normalized * velocityMagnitude;
+
+        Transform pr = Instantiate(rocket, firePoint.position, Quaternion.identity);
         pr.GetComponent<Rigidbody2D>().velocity = finalVelocity;
 
         TurnBase.turnPlayer = false;

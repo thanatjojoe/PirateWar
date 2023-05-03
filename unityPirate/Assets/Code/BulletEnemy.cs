@@ -7,6 +7,7 @@ public class BulletEnemy : MonoBehaviour
     private Rigidbody2D rb;
 
     public static bool playerMoveToOrigin = false;
+    
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -17,22 +18,22 @@ public class BulletEnemy : MonoBehaviour
         float angle = Mathf.Atan2(rb.velocity.y,rb.velocity.x) * Mathf.Rad2Deg;
     }
    
-    private void OnTriggerEnter2D(Collider2D other)
+    void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.tag == "Water" || other.gameObject.tag == "Player" || other.gameObject.tag == "Boat")
         {
-            StartCoroutine(StartTimer(1));
+            StartCoroutine(StartTimer(0.5f));
         }
         if (other.gameObject.tag == "Player")
         {
             GetComponent<Collider2D>().enabled = false;
         }
     }
-    IEnumerator StartTimer(int timeRemaining)
+    IEnumerator StartTimer(float timeRemaining)
     {
-        for (int i = timeRemaining; i > 0; i--)
+        for (float i = timeRemaining; i > 0; i--)
         {
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(0.5f);
         }
         playerMoveToOrigin = true;
         TurnBase.EnemyShoot = false;
@@ -41,5 +42,4 @@ public class BulletEnemy : MonoBehaviour
         EnemyGun.move = false;
         Destroy(gameObject);
     }
-    
 }
