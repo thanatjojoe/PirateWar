@@ -5,13 +5,14 @@ using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
-  
+    public GameObject changeEnemy;
+    public TurnBase turnBase;
     public Vector3 originalPosition;
     private bool isMovingBack;
-    
-    
+
     public int hp = 100; 
-    public static int currentHealth;
+    
+    public  int currentHealthEnemy;
     
     public Slider slider;
     public Gradient gradient;
@@ -20,18 +21,13 @@ public class Enemy : MonoBehaviour
 
     void Start()
     {
-        currentHealth = hp;
+        currentHealthEnemy = hp;
         originalPosition = transform.position;
         isMovingBack = false;
     }
 
     void Update()
     {
-        if (currentHealth <= 0)
-        {
-            Destroy(hpBar.gameObject);
-            Destroy(gameObject);
-        }
         if (isMovingBack == true)
         {
             // Move the enemy back to their original position
@@ -47,37 +43,76 @@ public class Enemy : MonoBehaviour
         }
         if (EnemyGun.move == true)
         {
-
             StartCoroutine(Delay(1f));
         }
     }
-    public void OnTriggerEnter2D(Collider2D other)
+    void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.tag == "Bullet")
+        if (other.gameObject.tag == "BulletPlayer")
         { 
-            RecieveDmg(10);
-           SetHealth(currentHealth);
+            int atk = 50;
+            RecieveDmg(atk);
+           SetHealth(currentHealthEnemy);
 
             // Push the enemy back
             Vector2 bulletVelocity = other.gameObject.GetComponent<Rigidbody2D>().velocity;
             transform.position -= (Vector3)bulletVelocity.normalized * 0.5f;
-            
+            if (currentHealthEnemy <= 0)
+            {
+                turnBase.OnEnemyDestroyed(gameObject);
+                TurnBase.score = TurnBase.score + 10; 
+                Destroy(hpBar.gameObject);
+                Destroy(gameObject);
+                nextEnemy();
+            }
+        }
+
+        if (other.gameObject.tag == "BulletRocket")
+        {
+            int atk = 100;
+            RecieveDmg(atk);
+            SetHealth(currentHealthEnemy);
+
+            // Push the enemy back
+            Vector2 bulletVelocity = other.gameObject.GetComponent<Rigidbody2D>().velocity;
+            transform.position -= (Vector3) bulletVelocity.normalized * 0.5f;
+            if (currentHealthEnemy <= 0)
+            {
+                turnBase.OnEnemyDestroyed(gameObject);
+                TurnBase.score = TurnBase.score + 10;
+                Destroy(hpBar.gameObject);
+                Destroy(gameObject);
+                nextEnemy();
+            }
         }
         if (other.gameObject.tag == "Water")
         {
+            turnBase.OnEnemyDestroyed(gameObject);
+            TurnBase.score = TurnBase.score + 10;
+            nextEnemy();
             Destroy(hpBar.gameObject);
-            Destroy(gameObject);
+
         }
+
+
     }
     public void RecieveDmg(int atkEnemy)
     { 
-        currentHealth -= atkEnemy;
+        
+        currentHealthEnemy = currentHealthEnemy - atkEnemy;
     }
     public void SetHealth(int health)
     {
         slider.value = health;
         fill.color = gradient.Evaluate(slider.normalizedValue);
     }
+
+    public void nextEnemy()
+    {
+        changeEnemy.gameObject.SetActive(true);
+    }
+
+   
     IEnumerator Delay(float timeRemaining)
     {
         for (float i = timeRemaining; i > 0; i--)

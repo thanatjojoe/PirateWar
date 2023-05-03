@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Bullets : MonoBehaviour
@@ -16,11 +17,11 @@ public class Bullets : MonoBehaviour
       float angle = Mathf.Atan2(rb.velocity.y,rb.velocity.x) * Mathf.Rad2Deg;
    }
    
-   private void OnTriggerEnter2D(Collider2D other)
+   void OnCollisionEnter2D(Collision2D other)
    {
       if (other.gameObject.tag == "Water" || other.gameObject.tag == "Enemy" || other.gameObject.tag == "Boat")
       {
-         StartCoroutine(StartTimer(1));
+         StartCoroutine(StartTimer(0.5f));
          EnemyGun.one1 = true;
       }
 

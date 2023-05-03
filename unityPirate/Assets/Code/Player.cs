@@ -1,18 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class Player : MonoBehaviour
 {
-    public HealthBar healthBar;
+    public GameObject changePlyer;
+    public TurnBase turnBase;
     private bool isMovingBack;
     public Vector3 originalPosition;
 
     private int hp = 100;
-    public static int currentHealth;
-
-   
     
+    public int currentHealth;
+    
+    public Slider slider;
+    public Gradient gradient;
+    public Image fill;
+    public GameObject hpBar;
+
     void Start()
     {
         currentHealth = hp;
@@ -23,7 +31,10 @@ public class Player : MonoBehaviour
     {
         if (currentHealth <= 0)
         {
-            Destroy(gameObject);
+            turnBase.OnPlayerDestroyed(gameObject);
+            nextPlayer();
+            Destroy(hpBar.gameObject);
+            
         }
         if (isMovingBack == true)
         {
@@ -35,30 +46,61 @@ public class Player : MonoBehaviour
             if (transform.position == originalPosition)
             {
                 isMovingBack = false;
+                BulletEnemy.playerMoveToOrigin = false;
             }
         }
         if (BulletEnemy.playerMoveToOrigin == true)
         {
-            isMovingBack = true;
-            BulletEnemy.playerMoveToOrigin = false;
+            StartCoroutine(Delay(1f));
+            
         }
     }
-    private void OnTriggerEnter2D(Collider2D other)
+    
+    //private void OnTriggerEnter2D(Collider2D other)
+    void OnCollisionEnter2D(Collision2D other)
     {
-        
-        if (other.gameObject.tag == "Bullet")
+        if (other.gameObject.tag == "BulletEnemy")
         {
-            RecieveDmg(10);
-            healthBar.SetHealth(currentHealth);
+            int atk = 50;
+            RecieveDmg(atk);
+            SetHealth(currentHealth);
+            // Push the enemy back
+            Vector2 bulletVelocity = other.gameObject.GetComponent<Rigidbody2D>().velocity;
+            transform.position -= (Vector3)bulletVelocity.normalized * 0.5f;
         }
         if (other.gameObject.tag == "Water")
         {
-            currentHealth = 0;
-            Destroy(gameObject);
+            turnBase.OnPlayerDestroyed(gameObject);
+            nextPlayer();
+            Destroy(hpBar.gameObject);
+          
+        }
+        if (other.gameObject.tag == "Player")
+        {
+            // Handle collision with another player here
+            RecieveDmg(0);
         }
     }
     public void RecieveDmg(int atkEnemy)
     { 
-        currentHealth -= atkEnemy;
+        
+        currentHealth = currentHealth - atkEnemy;
+    }
+    public void SetHealth(int health)
+    {
+        slider.value = health;
+        fill.color = gradient.Evaluate(slider.normalizedValue);
+    }
+    IEnumerator Delay(float timeRemaining)
+    {
+        for (float i = timeRemaining; i > 0; i--)
+        {
+            yield return new WaitForSeconds(0.5f);
+        }
+        isMovingBack = true;
+    }
+    public void nextPlayer()
+    {
+       changePlyer.gameObject.SetActive(true);
     }
 }
