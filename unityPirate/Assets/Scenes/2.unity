@@ -1880,37 +1880,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 584201106}
   m_CullTransparentMesh: 1
---- !u!1 &587064674
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 587064675}
-  m_Layer: 6
-  m_Name: GameObject
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &587064675
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 587064674}
-  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: 41.86, y: 3.45, z: 0}
-  m_LocalScale: {x: 3.3865, y: 3.3865, z: 3.3865}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &634136515
 GameObject:
   m_ObjectHideFlags: 0
@@ -2604,7 +2573,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f7d7d37ace2e6b4889b2263eb7052a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  changeEnemy: {fileID: 587064674}
+  changeEnemy: {fileID: 0}
   turnBase: {fileID: 1832196361}
   originalPosition: {x: 0, y: 0, z: 0}
   hp: 100
@@ -3843,7 +3812,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2d818a1e3ab02e408ef18009760e750, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  changePlyer: {fileID: 587064674}
+  changePlyer: {fileID: 0}
   turnBase: {fileID: 1832196361}
   originalPosition: {x: -6.5, y: 0, z: 0}
   currentHealth: 0
@@ -4165,7 +4134,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1832196361
 MonoBehaviour:
