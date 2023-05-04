@@ -84,7 +84,22 @@ public class Enemy : MonoBehaviour
                 Destroy(gameObject);
                 nextEnemy();
             }
+            if (other.gameObject.tag == "Water")
+            {
+                turnBase.OnEnemyDestroyed(gameObject);
+                TurnBase.score = TurnBase.score + 10;
+                nextEnemy();
+                Destroy(hpBar.gameObject);
+
+            }
         }
+        
+
+
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
         if (other.gameObject.tag == "Water")
         {
             turnBase.OnEnemyDestroyed(gameObject);
@@ -93,8 +108,6 @@ public class Enemy : MonoBehaviour
             Destroy(hpBar.gameObject);
 
         }
-
-
     }
     public void RecieveDmg(int atkEnemy)
     { 

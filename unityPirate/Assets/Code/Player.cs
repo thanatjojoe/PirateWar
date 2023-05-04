@@ -80,6 +80,25 @@ public class Player : MonoBehaviour
             // Handle collision with another player here
             RecieveDmg(0);
         }
+        if (other.gameObject.tag == "Water")
+        {
+            turnBase.OnEnemyDestroyed(gameObject);
+            TurnBase.score = TurnBase.score + 10;
+            nextPlayer();
+            Destroy(hpBar.gameObject);
+
+        }
+    }
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "Water")
+        {
+            turnBase.OnEnemyDestroyed(gameObject);
+            TurnBase.score = TurnBase.score + 10;
+            nextPlayer();
+            Destroy(hpBar.gameObject);
+
+        }
     }
     public void RecieveDmg(int atkEnemy)
     {

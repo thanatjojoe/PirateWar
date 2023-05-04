@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BulletEnemy : MonoBehaviour
@@ -27,6 +28,14 @@ public class BulletEnemy : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             GetComponent<Collider2D>().enabled = false;
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "Water")
+        {
+            StartCoroutine(StartTimer(0.5f));
         }
     }
     IEnumerator StartTimer(float timeRemaining)
