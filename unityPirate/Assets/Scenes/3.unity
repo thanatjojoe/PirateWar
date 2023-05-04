@@ -989,7 +989,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 166898030}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: 30, y: 5.74, z: 0.03173075}
+  m_LocalPosition: {x: 30, y: 2.91, z: 0.03173075}
   m_LocalScale: {x: 3.3865, y: 3.3865, z: 3.3865}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1011,7 +1011,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   changeEnemy: {fileID: 650563606}
   turnBase: {fileID: 1832196361}
-  originalPosition: {x: 30, y: 3.37, z: 0}
+  originalPosition: {x: 30, y: 2.91, z: 0}
   hp: 100
   currentHealthEnemy: 0
   slider: {fileID: 1509865346}
@@ -2212,7 +2212,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 561325566}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 28.6, y: -1.67, z: -0.3991362}
+  m_LocalPosition: {x: 28.6, y: -4.59, z: -0.3991362}
   m_LocalScale: {x: 0.96750164, y: 10.89, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3054,7 +3054,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 926674856}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: 19.5, y: 5.65, z: 0.03173075}
+  m_LocalPosition: {x: 19.5, y: 1.05, z: 0.03173075}
   m_LocalScale: {x: 3.3865, y: 3.3865, z: 3.3865}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3097,7 +3097,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   changeEnemy: {fileID: 101894727}
   turnBase: {fileID: 1832196361}
-  originalPosition: {x: 19.5, y: 5.65, z: 0}
+  originalPosition: {x: 19.5, y: 1.05, z: 0}
   hp: 100
   currentHealthEnemy: 0
   slider: {fileID: 39430253}
@@ -3599,7 +3599,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 968818741}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 18.24, y: 2.54, z: -0.3991362}
+  m_LocalPosition: {x: 18.24, y: -1.88, z: -0.3991362}
   m_LocalScale: {x: 3, y: 2, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []

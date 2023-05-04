@@ -31,6 +31,14 @@ public class Bullets : MonoBehaviour
       }
       
    }
+   void OnTriggerEnter2D(Collider2D other)
+   {
+      if (other.gameObject.tag == "Water")
+      {
+         StartCoroutine(StartTimer(0.5f));
+         
+      }
+   }
    IEnumerator StartTimer(float timeRemaining)
    {
       for (float i = timeRemaining; i > 0; i--)
