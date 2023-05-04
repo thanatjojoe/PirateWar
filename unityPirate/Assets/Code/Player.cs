@@ -82,8 +82,7 @@ public class Player : MonoBehaviour
         }
     }
     public void RecieveDmg(int atkEnemy)
-    { 
-        
+    {
         currentHealth = currentHealth - atkEnemy;
     }
     public void SetHealth(int health)
@@ -101,6 +100,9 @@ public class Player : MonoBehaviour
     }
     public void nextPlayer()
     {
-       changePlyer.gameObject.SetActive(true);
+        if (changePlyer != null)
+        {
+            changePlyer.gameObject.SetActive(true);
+        }
     }
 }

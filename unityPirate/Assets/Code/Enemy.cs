@@ -109,7 +109,10 @@ public class Enemy : MonoBehaviour
 
     public void nextEnemy()
     {
-        changeEnemy.gameObject.SetActive(true);
+        if (changeEnemy != null)
+        {
+            changeEnemy.gameObject.SetActive(true);
+        }
     }
 
    
