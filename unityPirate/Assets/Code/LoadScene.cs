@@ -19,7 +19,7 @@ public class LoadScene : MonoBehaviour
     }
     public void nextScene()
     {
-        if (TurnBase.stage < 3)
+        if (TurnBase.stage < 4)
         {
             SceneManager.LoadScene(TurnBase.stage);
         }

@@ -88,7 +88,7 @@ public class PlayerGun : MonoBehaviour
     {
         float maxDistance = 4f;
         float minVelocity = 5f;
-        float maxVelocity = 50f;
+        float maxVelocity = 40f;
 
         Vector3 lastPoint = line.GetPosition(line.positionCount - 1);
         float distance = Vector3.Distance(firePoint.position, lastPoint);
@@ -105,9 +105,9 @@ public class PlayerGun : MonoBehaviour
     }
     void FireProjectileRocket(Transform firePoint, Vector2 fireVelocity)
     {
-        float maxDistance = 4f;
-        float minVelocity = 5f;
-        float maxVelocity = 50f;
+        float maxDistance = 6f;
+        float minVelocity = 6f;
+        float maxVelocity = 100f;
 
         Vector3 lastPoint = line.GetPosition(line.positionCount - 1);
         float distance = Vector3.Distance(firePoint.position, lastPoint);
