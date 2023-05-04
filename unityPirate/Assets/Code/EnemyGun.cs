@@ -61,7 +61,7 @@ public class EnemyGun : MonoBehaviour
             } 
             
             // Calculate the fire velocity
-            float r = Random.Range(30, 50);
+            float r = Random.Range(20, 50);
             Vector2 fireVelocity = direction.normalized * r;
 
             // Check if the player is within firing range
